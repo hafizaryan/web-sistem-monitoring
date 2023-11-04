@@ -17,7 +17,27 @@
                                 <li><span class="bread-blod">Data Pimpinan</span></li>
                             </ul>
                         </div>
-                    </div>
+                    </div><br>
+                    <?php
+                    if (isset($_SESSION['success_message'])) {
+                        echo '<div class="alert alert-success" role="alert" id="successMessage">' . $_SESSION['success_message'] . '</div>';
+                        unset($_SESSION['success_message']); // Hapus pesan setelah ditampilkan
+                    }
+                    ?>
+                    <?php
+                    if (isset($_SESSION['error_message'])) {
+                        echo '<div class="alert alert-danger" role="alert" id="successMessage">' . $_SESSION['error_message'] . '</div>';
+                        unset($_SESSION['error_message']); // Hapus pesan setelah ditampilkan
+                    }
+                    ?>
+                    <script>
+                        setTimeout(function() {
+                            var successMessage = document.getElementById('successMessage');
+                            if (successMessage) {
+                                successMessage.style.display = 'none';
+                            }
+                        }, 3000); // Menghilangkan pesan setelah 3 detik (3000 ms)
+                    </script>
                 </div>
             </div>
         </div>
@@ -26,17 +46,13 @@
 
 <div class="container-fluid">
     <div class="panel panel">
-
         <div class="panel-heading">
             <h3 class="panel-title">Data Pimpinan</h3>
         </div>
         <div class="panel-body">
-
-
             <div class="pull-right">
                 <a href="petugas_tambah.php" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Pimpinan</a>
             </div>
-
             <br>
             <br>
             <br>
@@ -51,48 +67,44 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
+                    <?php
                     include '../koneksi.php';
                     $no = 1;
-                    $petugas = mysqli_query($koneksi,"SELECT * FROM petugas ORDER BY petugas_id DESC");
-                    while($p = mysqli_fetch_array($petugas)){
-                        ?>
+                    $petugas = mysqli_query($koneksi, "SELECT * FROM petugas ORDER BY petugas_id DESC");
+                    while ($p = mysqli_fetch_array($petugas)) {
+                    ?>
                         <tr>
                             <td><?php echo $no++; ?></td>
                             <td>
-                                <?php 
-                                if($p['petugas_foto'] == ""){
-                                    ?>
+                                <?php
+                                if ($p['petugas_foto'] == "") {
+                                ?>
                                     <img class="img-user" src="../gambar/sistem/user.png">
-                                    <?php
-                                }else{
-                                    ?>
+                                <?php
+                                } else {
+                                ?>
                                     <img class="img-user" src="../gambar/petugas/<?php echo $p['petugas_foto']; ?>">
-                                    <?php
+                                <?php
                                 }
                                 ?>
                             </td>
                             <td><?php echo $p['petugas_nama'] ?></td>
                             <td><?php echo $p['petugas_username'] ?></td>
                             <td class="text-center">
-                                <div class="btn-group">
+                                <div class="btn-group">                                
                                     <a href="petugas_edit.php?id=<?php echo $p['petugas_id']; ?>" class="btn btn-default"><i class="fa fa-wrench"></i></a>
-                                    <a href="petugas_hapus.php?id=<?php echo $p['petugas_id']; ?>" class="btn btn-default"><i class="fa fa-trash"></i></a>
+                                    <a href="petugas_hapus.php?id=<?php echo $p['petugas_id']; ?>" class="btn btn-default" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fa fa-trash"></i></a>
                                 </div>
                             </td>
                         </tr>
-                        <?php 
+                    <?php
                     }
                     ?>
                 </tbody>
             </table>
-
-
         </div>
-
     </div>
 </div>
 <br><br><br><br><br><br><br>
 <div>
-<?php include 'footer.php'; ?></div>
-
+    <?php include 'footer.php'; ?></div>

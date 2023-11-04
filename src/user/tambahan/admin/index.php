@@ -18,6 +18,19 @@
                             </ul>
                         </div>
                     </div>
+                    <?php
+                    if (isset($_GET['alert']) && $_GET['alert'] === 'sukses') {
+                        echo '<div class="alert alert-success" style="text-align: center;" role="alert" id="errorMessage">Login Berhasil! Selamat Datang </div>';
+                    }
+                    ?>
+                    <script>
+                        setTimeout(function() {
+                            var successMessage = document.getElementById('errorMessage');
+                            if (successMessage) {
+                                successMessage.style.display = 'none';
+                            }
+                        }, 3000); // Menghilangkan pesan setelah 3 detik (3000 ms)
+                    </script>
                 </div>
             </div>
         </div>
@@ -35,10 +48,10 @@
                             <div id="sparklinedash"></div>
                         </li>
                         <li class="text-right sp-cn-r">
-                            <i class="fa fa-level-up" aria-hidden="true"></i> 
+                            <i class="fa fa-level-up" aria-hidden="true"></i>
                             <span class="counter text-success">
-                                <?php 
-                                $jumlah_petugas = mysqli_query($koneksi,"select * from sengketa WHERE proses = 'Masuk'");
+                                <?php
+                                $jumlah_petugas = mysqli_query($koneksi, "select * from sengketa WHERE proses = 'Masuk'");
                                 ?>
                                 <span class="counter"><?php echo mysqli_num_rows($jumlah_petugas); ?></span>
                             </span>
@@ -46,7 +59,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="white-box analytics-info-cs res-mg-t-30 res-tablet-mg-t-30 dk-res-t-pro-30">
                     <h3 class="box-title">Jumlah Sengketa Diproses</h3>
@@ -55,10 +68,10 @@
                             <div id="sparklinedash3"></div>
                         </li>
                         <li class="text-right graph-three-ctn">
-                            <i class="fa fa-level-up" aria-hidden="true"></i> 
+                            <i class="fa fa-level-up" aria-hidden="true"></i>
                             <span class="counter text-info">
-                                <?php 
-                                $jumlah_arsip = mysqli_query($koneksi,"select * from sengketa WHERE proses = 'Diproses'");
+                                <?php
+                                $jumlah_arsip = mysqli_query($koneksi, "select * from sengketa WHERE proses = 'Diproses'");
                                 ?>
                                 <span class="counter"><?php echo mysqli_num_rows($jumlah_arsip); ?></span>
                             </span>
@@ -74,10 +87,10 @@
                             <div id="sparklinedash4"></div>
                         </li>
                         <li class="text-right graph-four-ctn">
-                            <i class="fa fa-level-down" aria-hidden="true"></i> 
+                            <i class="fa fa-level-down" aria-hidden="true"></i>
                             <span class="text-danger">
-                                <?php 
-                                $jumlah_kategori = mysqli_query($koneksi,"select * from sengketa WHERE proses = 'Selesai'");
+                                <?php
+                                $jumlah_kategori = mysqli_query($koneksi, "select * from sengketa WHERE proses = 'Selesai'");
                                 ?>
                                 <span class="counter"><?php echo mysqli_num_rows($jumlah_kategori); ?></span>
                             </span>
@@ -97,9 +110,9 @@
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
 
-                <?php 
+                <?php
                 $id = $_SESSION['id'];
-                $saya = mysqli_query($koneksi,"select * from admin where admin_id='$id'");
+                $saya = mysqli_query($koneksi, "select * from admin where admin_id='$id'");
                 $s = mysqli_fetch_assoc($saya);
                 ?>
                 <div class="single-cards-item">
@@ -111,15 +124,15 @@
                     </div>
 
                     <div class="single-product-text">
-                        <?php 
-                        if($s['admin_foto'] == ""){
-                            ?>
+                        <?php
+                        if ($s['admin_foto'] == "") {
+                        ?>
                             <img class="img-user" src="../gambar/sistem/user.png">
-                            <?php
-                        }else{
-                            ?>
+                        <?php
+                        } else {
+                        ?>
                             <img class="img-user" src="../gambar/admin/<?php echo $s['admin_foto']; ?>">
-                            <?php
+                        <?php
                         }
                         ?>
 
@@ -135,4 +148,4 @@
 </div>
 <br>
 <div>
-<?php include 'footer.php'; ?></div>
+    <?php include 'footer.php'; ?></div>

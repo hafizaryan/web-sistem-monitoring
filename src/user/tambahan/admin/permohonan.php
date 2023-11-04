@@ -17,7 +17,27 @@
                                 <li><span class="bread-blod">Permohonan</span></li>
                             </ul>
                         </div>
-                    </div>
+                    </div><br>
+                    <?php
+                    if (isset($_SESSION['success_message'])) {
+                        echo '<div class="alert alert-success" role="alert" id="successMessage">' . $_SESSION['success_message'] . '</div>';
+                        unset($_SESSION['success_message']); // Hapus pesan setelah ditampilkan
+                    }
+                    ?>
+                    <?php
+                    if (isset($_SESSION['error_message'])) {
+                        echo '<div class="alert alert-danger" role="alert" id="successMessage">' . $_SESSION['error_message'] . '</div>';
+                        unset($_SESSION['error_message']); // Hapus pesan setelah ditampilkan
+                    }
+                    ?>
+                    <script>
+                        setTimeout(function() {
+                            var successMessage = document.getElementById('successMessage');
+                            if (successMessage) {
+                                successMessage.style.display = 'none';
+                            }
+                        }, 3000); // Menghilangkan pesan setelah 3 detik (3000 ms)
+                    </script>
                 </div>
             </div>
         </div>
@@ -95,7 +115,7 @@
                                 <!-- Tambahkan atribut data-sengketa-id untuk menyimpan 'sengketa_id' data yang akan dihapus -->
                                 <form action="permohonan_hapus.php" method="post">
                                     <input type="hidden" name="sengketa_id" value="<?php echo $p['sengketa_id']; ?>">
-                                    <button type="submit" class="btn btn-danger btn-delete" onclick="return confirmDelete();">
+                                    <button type="submit" class="btn btn-danger btn-delete">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </form>

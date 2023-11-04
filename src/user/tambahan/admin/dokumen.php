@@ -18,45 +18,53 @@
                             </ul>
                         </div>
                     </div>
+                    <?php
+                    if (isset($_SESSION['success_message'])) {
+                        echo '<div class="alert alert-success" role="alert" id="successMessage">' . $_SESSION['success_message'] . '</div>';
+                        unset($_SESSION['success_message']); // Hapus pesan setelah ditampilkan
+                    }
+                    ?>
+                    <script>
+                        setTimeout(function() {
+                            var successMessage = document.getElementById('successMessage');
+                            if (successMessage) {
+                                successMessage.style.display = 'none';
+                            }
+                        }, 3000); // Menghilangkan pesan setelah 3 detik (3000 ms)
+                    </script>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 <div class="container-fluid">
     <div class="panel panel">
-
         <div class="panel-heading">
             <h3 class="panel-title">Data Dokumen</h3>
         </div>
         <br>
         <div class="pull-right">
-                <a href="dokumen_cetak.php" class="btn btn-primary"><i class="fa fa-download"></i> Cetak Kelengkapan Dokumen</a>
-            </div>
+            <a href="dokumen_cetak.php" class="btn btn-primary"><i class="fa fa-download"></i> Cetak Kelengkapan Dokumen</a>
+        </div>
         <div class="panel-body">
-
             <br>
             <br>
             <br>
-
             <center>
-                <?php 
-                if(isset($_GET['alert'])){
-                    if($_GET['alert'] == "gagal"){
-                        ?>
+                <?php
+                if (isset($_GET['alert'])) {
+                    if ($_GET['alert'] == "gagal") {
+                ?>
                         <div class="alert alert-danger">File dokumen gagal diupload. krena demi keamanan file .php tidak diperbolehkan.</div>
-                        <?php
-                    }else{
-                        ?>
+                    <?php
+                    } else {
+                    ?>
                         <div class="alert alert-success">dokumen berhasil tersimpan.</div>
-                        <?php
+                <?php
                     }
                 }
                 ?>
             </center>
-            
-
             <table id="table" class="table table-bordered table-striped table-hover table-datatable">
                 <thead>
                     <tr>
@@ -69,17 +77,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
+                    <?php
                     include '../koneksi.php';
                     $no = 1;
-                    $dokumen = mysqli_query($koneksi,"SELECT * FROM sengketa,dokumen WHERE dokumen_pemohon=dokumen_id ORDER BY sengketa_id DESC");
-                    while($p = mysqli_fetch_array($dokumen)){
-                        ?>
+                    $dokumen = mysqli_query($koneksi, "SELECT * FROM sengketa,dokumen WHERE dokumen_pemohon=dokumen_id ORDER BY sengketa_id DESC");
+                    while ($p = mysqli_fetch_array($dokumen)) {
+                    ?>
                         <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $p['nama_pemohon'] ?></td>
                             <td>
-
                                 <b>FotoCopy Identitas Diri </b> : <?php echo $p['ktp'] ?><br>
                                 <b>Permohonan Penyelesaian Sengketa Informasi</b> : <?php echo $p['form'] ?><br>
                                 <b>Surat Keberatan</b> : <?php echo $p['bukti'] ?><br>
@@ -88,50 +95,40 @@
                                 <b>Surat Jawaban Permohonan Informasi</b> : <?php echo $p['sjpi'] ?><br>
                                 <b>Tanda Terima Surat Keberatan </b> : <?php echo $p['ttsk'] ?><br>
                                 <b>Surat Jawaban Keberatan</b> : <?php echo $p['sjk'] ?><br>
-
                             </td>
                             <td><?php
-                            $requiredDocuments = array(
-                                'ktp', 'form', 'bukti', 'spi', 'ttpi', 'sjpi', 'ttsk', 'sjk'
-                            );
-
-                            $isComplete = true;
-
-                            foreach ($requiredDocuments as $documentField) {
-                                if (empty($p[$documentField])) {
-                                    $isComplete = false;
-                                    break; // Keluar dari perulangan jika ada dokumen yang belum lengkap
+                                $requiredDocuments = array(
+                                    'ktp', 'form', 'bukti', 'spi', 'ttpi', 'sjpi', 'ttsk', 'sjk'
+                                );
+                                $isComplete = true;
+                                foreach ($requiredDocuments as $documentField) {
+                                    if (empty($p[$documentField])) {
+                                        $isComplete = false;
+                                        break; // Keluar dari perulangan jika ada dokumen yang belum lengkap
+                                    }
                                 }
-                            }
-                            
-                            if ($isComplete) {
-                                echo 'Lengkap';
-                            } else {
-                                echo 'Belum Lengkap';
-                            }
-                            
-                            ?></td>
-
+                                if ($isComplete) {
+                                    echo 'Lengkap';
+                                } else {
+                                    echo 'Belum Lengkap';
+                                }
+                                ?></td>
                             <td><?php
-                    $requiredDocuments = array(
-                        'ktp', 'form', 'bukti', 'spi', 'ttpi', 'sjpi', 'ttsk', 'sjk'
-                    );
-                    
-                    $isComplete = true;
-                    foreach ($requiredDocuments as $documentField) {
-                        if (empty($p[$documentField])) {
-                            $isComplete = false;
-                            echo '<span style="color: red;">' . $documentField . ': Belum Diunggah</span><br>';
-                        } else {
-                            echo $documentField . ': ' . $p[$documentField] . '<br>';
-                        }
-                    }
-                    ?>
-                        </td>
+                                $requiredDocuments = array(
+                                    'ktp', 'form', 'bukti', 'spi', 'ttpi', 'sjpi', 'ttsk', 'sjk'
+                                );
+                                $isComplete = true;
+                                foreach ($requiredDocuments as $documentField) {
+                                    if (empty($p[$documentField])) {
+                                        $isComplete = false;
+                                        echo '<span style="color: red;">' . $documentField . ': Belum Diunggah</span><br>';
+                                    } else {
+                                        echo $documentField . ': ' . $p[$documentField] . '<br>';
+                                    }
+                                }
+                                ?>
+                            </td>
                             <td class="text-center">
-
-
-
                                 <div class="modal fade" id="exampleModal_<?php echo $p['dokumen_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -151,35 +148,25 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                
                                 <div class="btn-group">
-                                <?php
-                    if (!$isComplete) {
-                        echo '<a href="dokumen_tambah.php?id=' . $p['dokumen_id'] . '" class="btn btn-primary"><i class="fa fa-cloud"></i> Upload Dokumen</a>';
-                    } else {
-                        echo '<a target="_blank" href="dokumen_preview.php?id=' . $p['dokumen_id'] . '" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>';
-                    }
-                    ?>
-                                    
+                                    <?php
+                                    if (!$isComplete) {
+                                        echo '<a href="dokumen_tambah.php?id=' . $p['dokumen_id'] . '" class="btn btn-primary"><i class="fa fa-cloud"></i> Upload Dokumen</a>';
+                                    } else {
+                                        echo '<a target="_blank" href="dokumen_preview.php?id=' . $p['dokumen_id'] . '" class="btn btn-default"><i class="fa fa-search"></i> Preview</a>';
+                                    }
+                                    ?>
                                 </div>
-                                
-                                
-                               
                             </td>
                         </tr>
-                        <?php 
+                    <?php
                     }
                     ?>
                 </tbody>
             </table>
-
-
         </div>
-
     </div>
 </div>
 
 <div>
-<?php include 'footer.php'; ?></div>
-
+    <?php include 'footer.php'; ?></div>

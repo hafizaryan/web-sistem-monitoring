@@ -1,4 +1,6 @@
 <?php 
+session_start(); // Don't forget to start the session
+
 include '../koneksi.php';
 $id  = $_POST['id'];
 $sengketa  = $_POST['sengketa'];
@@ -25,5 +27,14 @@ $agenda_sidang = mysqli_real_escape_string($koneksi, $agenda_sidang);
 $majelis_komisioner = mysqli_real_escape_string($koneksi, $majelis_komisioner);
 
 
-mysqli_query($koneksi, "update sidang set sengketa='$sengketa',nama_pemohon_sidang='$nama_pemohon',nama_termohon_sidang='$nama_termohon',tgl_sidang='$tgl',staff_sidang='$staffJson', agenda_sidang ='$agenda_sidang', majelis_komisioner='$majelis_komisioner' where sidang_id='$id'");
+$query = "update sidang set sengketa='$sengketa',nama_pemohon_sidang='$nama_pemohon',nama_termohon_sidang='$nama_termohon',tgl_sidang='$tgl',staff_sidang='$staffJson', agenda_sidang ='$agenda_sidang', majelis_komisioner='$majelis_komisioner' where sidang_id='$id'";
+$result = mysqli_query($koneksi, $query);
+
+if ($result) {
+    $_SESSION['success_message'] = "Sukses! Data berhasil diubah.";
+} else {
+    $_SESSION['success_message'] = "Gagal mengubah data.";
+}
+
+// mysqli_query($koneksi, "update sidang set sengketa='$sengketa',nama_pemohon_sidang='$nama_pemohon',nama_termohon_sidang='$nama_termohon',tgl_sidang='$tgl',staff_sidang='$staffJson', agenda_sidang ='$agenda_sidang', majelis_komisioner='$majelis_komisioner' where sidang_id='$id'");
 header("location:sidang.php");

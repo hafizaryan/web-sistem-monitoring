@@ -48,19 +48,14 @@
 <script type="text/javascript">
 	$(document).ready( function () {
 		$('.table-datatable').DataTable();
-
-
 		Morris.Area({
 			element: 'extra-area-chart',
 			data: [
-
 			<?php 
 			$dateBegin = strtotime("first day of this month");  
 			$dateEnd = strtotime("last day of this month");
-
 			$awal = date("Y/m/d", $dateBegin);         
 			$akhir = date("Y/m/d", $dateEnd);
-
 			$arsip = mysqli_query($koneksi,"SELECT * FROM riwayat WHERE date(riwayat_waktu) >= '$awal' AND date(riwayat_waktu) <= '$akhir'");
 			while($p = mysqli_fetch_array($arsip)){
 				$tgl = date('Y/m/d',strtotime($p['riwayat_waktu']));
@@ -74,7 +69,6 @@
 				<?php 
 			}
 			?>
-
 			],
 			xkey: 'period',
 			ykeys: ['Unduh'],
@@ -90,11 +84,8 @@
 			hideHover: 'auto',
 			lineColors: ['#006DF0'],
 			resize: true
-
 		});
 	});
-
-
 </script>
 </body>
 

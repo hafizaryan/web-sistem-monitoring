@@ -23,5 +23,12 @@ unlink("../dokumen/".$nama_file_sjpi);
 unlink("../dokumen/".$nama_file_ttsk);
 unlink("../dokumen/".$nama_file_sjk);
 
-mysqli_query($koneksi, "delete from dokumen where dokumen_id='$id'");
+$query = "delete from dokumen where dokumen_id='$id'";
+$result = mysqli_query($koneksi, $query);
+
+if ($result) {
+    $_SESSION['success_message'] = "Sukses! Data berhasil dihapus.";
+} else {
+    $_SESSION['success_message'] = "Gagal menghapus data.";
+}
 header("location:dokumen.php");

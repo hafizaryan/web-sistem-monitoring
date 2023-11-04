@@ -25,29 +25,22 @@
 </div>
 
 <div class="container-fluid">
-
-
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
             <div class="panel panel">
-
                 <div class="panel-heading">
                     <h3 class="panel-title">Upload Jadwal Sidang</h3>
                 </div>
                 <div class="panel-body">
-
                     <div class="pull-right">            
                         <a href="sidang.php" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
                     </div>
-
                     <br>
                     <br>
-
                     <form method="post" action="sidang_aksi.php" enctype="multipart/form-data">
-
                         <div class="form-group">
                             <label>Sengketa</label>
-                            <select class="form-control" name="sengketa" required="required">
+                            <select class="form-control" name="sengketa" >
                                 <option value="">Pilih pemohon</option>
                                 <?php 
                                 $kategori = mysqli_query($koneksi,"SELECT * FROM sengketa where proses='Diproses'");
@@ -59,17 +52,14 @@
                                 ?>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label>Tanggal Sidang</label>
                             <input type="date" class="form-control" name="tgl" required="required">
                         </div>
-
                         <div class="form-group">
                             <label>Sidang Ke-</label>
                             <input type="number" class="form-control" name="ke" required="required">
                         </div>
-
                         <div class="form-group">
                             <label>Nama Petugas</label>
                             <?php 
@@ -84,7 +74,6 @@
                             }
                             ?>
                         </div>
-
                         <div class="form-group">
                             <label>Agenda Sidang</label>
                             <input type="text" class="form-control" name="agenda_sidang" required="required">
@@ -93,20 +82,15 @@
                             <label>Majelis Komisioner</label>
                             <input type="text" class="form-control" name="majelis_komisioner" required="required">
                         </div>
-
                         <div class="form-group">
                             <label></label>
                             <input type="submit" class="btn btn-primary" value="Upload">
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
 
 

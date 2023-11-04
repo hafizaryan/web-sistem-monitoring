@@ -30,26 +30,20 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel">
-
                 <div class="panel-heading">
                     <h3 class="panel-title">Preview Dokumen</h3>
                 </div>
                 <div class="panel-body">
-
                     <a href="dokumen.php" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
-
                     <br>
                     <br>
-
-                    <?php 
-                    $id = $_GET['id'];  
-                    $data = mysqli_query($koneksi,"SELECT * FROM sengketa,dokumen WHERE dokumen_pemohon=dokumen_id and dokumen_id='$id'");
-                    while($d = mysqli_fetch_array($data)){
-                        ?>
-
+                    <?php
+                    $id = $_GET['id'];
+                    $data = mysqli_query($koneksi, "SELECT * FROM sengketa,dokumen WHERE dokumen_pemohon=dokumen_id and dokumen_id='$id'");
+                    while ($d = mysqli_fetch_array($data)) {
+                    ?>
                         <div class="row">
                             <div class="col-lg-4">
-
                                 <table class="table">
                                     <tr>
                                         <th>Nama Pemohon</th>
@@ -91,57 +85,52 @@
                                         <th>Surat Jawaban Keberatan</th>
                                         <td><?php echo $d['sjk']; ?></td>
                                     </tr>
-                                    
                                 </table>
-
                             </div>
-
                             <div class="col-lg-8">
-
-                                    <div class="pdf-singe-pro">
-                                        <a class="media" href="../dokumen/<?php echo $d['ktp']; ?>"></a>
-                                    </div>
-                                    </br>
-                                    </br>
-                                    <div class="pdf-singe-pro">
-                                        <a class="media" href="../dokumen/<?php echo $d['form']; ?>"></a>
-                                    </div>
-                                    </br>
-                                    </br>
-                                    <div class="pdf-singe-pro">
-                                        <a class="media" href="../dokumen/<?php echo $d['bukti']; ?>"></a>
-                                    </div>
-                                    </br>
-                                    </br>
-                                    <div class="pdf-singe-pro">
-                                        <a class="media" href="../dokumen/<?php echo $d['spi']; ?>"></a>
-                                    </div>
-                                    </br>
-                                    </br>
-                                    <div class="pdf-singe-pro">
-                                        <a class="media" href="../dokumen/<?php echo $d['ttpi']; ?>"></a>
-                                    </div>
-                                    </br>
-                                    </br>
-                                    <div class="pdf-singe-pro">
-                                        <a class="media" href="../dokumen/<?php echo $d['sjpi']; ?>"></a>
-                                    </div>
-                                    </br>
-                                    </br>
-                                    <div class="pdf-singe-pro">
-                                        <a class="media" href="../dokumen/<?php echo $d['ttsk']; ?>"></a>
-                                    </div>
-                                    </br>
-                                    </br>
-                                    <div class="pdf-singe-pro">
-                                        <a class="media" href="../dokumen/<?php echo $d['sjk']; ?>"></a>
-                                    </div>
+                                <div class="pdf-singe-pro">
+                                    <a class="media" href="../dokumen/<?php echo $d['ktp']; ?>"></a>
+                                </div>
+                                </br>
+                                </br>
+                                <div class="pdf-singe-pro">
+                                    <a class="media" href="../dokumen/<?php echo $d['form']; ?>"></a>
+                                </div>
+                                </br>
+                                </br>
+                                <div class="pdf-singe-pro">
+                                    <a class="media" href="../dokumen/<?php echo $d['bukti']; ?>"></a>
+                                </div>
+                                </br>
+                                </br>
+                                <div class="pdf-singe-pro">
+                                    <a class="media" href="../dokumen/<?php echo $d['spi']; ?>"></a>
+                                </div>
+                                </br>
+                                </br>
+                                <div class="pdf-singe-pro">
+                                    <a class="media" href="../dokumen/<?php echo $d['ttpi']; ?>"></a>
+                                </div>
+                                </br>
+                                </br>
+                                <div class="pdf-singe-pro">
+                                    <a class="media" href="../dokumen/<?php echo $d['sjpi']; ?>"></a>
+                                </div>
+                                </br>
+                                </br>
+                                <div class="pdf-singe-pro">
+                                    <a class="media" href="../dokumen/<?php echo $d['ttsk']; ?>"></a>
+                                </div>
+                                </br>
+                                </br>
+                                <div class="pdf-singe-pro">
+                                    <a class="media" href="../dokumen/<?php echo $d['sjk']; ?>"></a>
+                                </div>
                             </div>
                         </div>
-                        <?php 
+                    <?php
                     }
                     ?>
-
                 </div>
                 <?php include 'footer.php'; ?>
             </div>

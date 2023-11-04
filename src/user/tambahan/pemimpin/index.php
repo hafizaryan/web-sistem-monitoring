@@ -18,6 +18,19 @@
                             </ul>
                         </div>
                     </div>
+                    <?php
+                    if (isset($_GET['alert']) && $_GET['alert'] === 'sukses') {
+                        echo '<div class="alert alert-success" style="text-align: center;" role="alert" id="errorMessage">Login Berhasil! Selamat Datang </div>';
+                    }
+                    ?>
+                    <script>
+                        setTimeout(function() {
+                            var successMessage = document.getElementById('errorMessage');
+                            if (successMessage) {
+                                successMessage.style.display = 'none';
+                            }
+                        }, 3000); // Menghilangkan pesan setelah 3 detik (3000 ms)
+                    </script>
                 </div>
             </div>
         </div>
@@ -89,14 +102,10 @@
     </div>
 </div>
 
-
-
-
 <div class="product-sales-area mg-tb-30">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-
                 <?php 
                 $id = $_SESSION['id'];
                 $saya = mysqli_query($koneksi,"select * from petugas where petugas_id='$id'");
@@ -105,10 +114,8 @@
                 <div class="single-cards-item">
                     <div class="single-product-image">
                         <a href="#">
-
                         <img src="../assets/img/product/profile-bg.jpg" alt="">                        </a>
                     </div>
-
                     <div class="single-product-text">
                         <?php 
                         if($s['petugas_foto'] == ""){
@@ -121,17 +128,14 @@
                             <?php
                         }
                         ?>
-
                         <h4><a class="cards-hd-dn" href="#"><?php echo $s['petugas_nama']; ?></a></h4>
                         <h5>Pimpinan</h5>
                         <p class="ctn-cards">Pengelolaan sengketa jadi lebih mudah dengan sistem informasi monitoring.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
-
 
 <?php include 'footer.php'; ?>

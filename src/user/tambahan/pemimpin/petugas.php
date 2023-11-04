@@ -17,7 +17,21 @@
                                 <li><span class="bread-blod">Pimpinan</span></li>
                             </ul>
                         </div>
-                    </div>
+                    </div><br>
+                    <?php
+                    if (isset($_SESSION['success_message'])) {
+                        echo '<div class="alert alert-success" role="alert" id="successMessage">' . $_SESSION['success_message'] . '</div>';
+                        unset($_SESSION['success_message']); // Hapus pesan setelah ditampilkan
+                    }
+                    ?>
+                    <script>
+                        setTimeout(function() {
+                            var successMessage = document.getElementById('successMessage');
+                            if (successMessage) {
+                                successMessage.style.display = 'none';
+                            }
+                        }, 3000); // Menghilangkan pesan setelah 3 detik (3000 ms)
+                    </script>
                 </div>
             </div>
         </div>
@@ -77,7 +91,7 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="petugas_edit.php?id=<?php echo $p['petugas_id']; ?>" class="btn btn-default"><i class="fa fa-wrench"></i></a>
-                                    <a href="petugas_hapus.php?id=<?php echo $p['petugas_id']; ?>" class="btn btn-default"><i class="fa fa-trash"></i></a>
+                                    <a href="petugas_hapus.php?id=<?php echo $p['petugas_id']; ?>" class="btn btn-default" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fa fa-trash"></i></a>
                                 </div>
                             </td>
                         </tr>

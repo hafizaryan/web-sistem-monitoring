@@ -1,10 +1,17 @@
 <?php 
 include '../koneksi.php';
-$id = $_GET['id'];
+session_start(); // Jangan lupa untuk memulai sesi
 
-$data = mysqli_query($koneksi, "select * from petugas where petugas_id='$id'");
-$d = mysqli_fetch_assoc($data);
+$id = $_GET['id'];
 $foto = $d['petugas_foto'];
 unlink("../gambar/petugas/$foto");
-mysqli_query($koneksi, "delete from petugas where petugas_id='$id'");
+$data = mysqli_query($koneksi, "select * from petugas where petugas_id='$id'");
+// Check if the query was successful
+if ($data) {
+    mysqli_query($koneksi, "delete from petugas where petugas_id='$id'");
+    $_SESSION['success_message'] = "Sukses! Data berhasil dihapus.";
+} else {
+    $_SESSION['success_message'] = "Gagal menghapus data."; // Pesan kesalahan jika penghapusan gagal
+}
 header("location:petugas.php");
+?>

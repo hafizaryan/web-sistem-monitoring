@@ -25,31 +25,23 @@
 </div>
 
 <div class="container-fluid">
-
-
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel">
-
                 <div class="panel-heading">
                     <h3 class="panel-title">Tinjau Sidang</h3>
                 </div>
                 <div class="panel-body">
-
                     <a href="sidang.php" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
-
                     <br>
                     <br>
-
-                    <?php 
-                    $id = $_GET['id'];  
-                    $data = mysqli_query($koneksi,"SELECT * FROM sidang,sengketa WHERE sengketa_id=sengketa and sidang_id='$id'");
-                    while($d = mysqli_fetch_array($data)){
-                        ?>
-
+                    <?php
+                    $id = $_GET['id'];
+                    $data = mysqli_query($koneksi, "SELECT * FROM sidang,sengketa WHERE sengketa_id=sengketa and sidang_id='$id'");
+                    while ($d = mysqli_fetch_array($data)) {
+                    ?>
                         <div class="row">
                             <div class="col-lg-4">
-
                                 <table class="table">
                                     <tr>
                                         <th>Nama Pemohon</th>
@@ -63,14 +55,12 @@
                                         <th>Tanggal Sidang</th>
                                         <td><?php echo $d['tgl_sidang']; ?></td>
                                     </tr>
-                                    
                                     <tr>
                                         <th>Nama Petugas</th>
                                         <td>
-                                            <?php 
+                                            <?php
                                             // Mengubah data JSON ke dalam bentuk array
                                             $staffArray = json_decode($d['staff_sidang'], true);
-
                                             // Mendapatkan nama staff dari tabel staff berdasarkan id_staff yang ada dalam data JSON
                                             $staffNames = array();
                                             $i = 0;
@@ -82,7 +72,6 @@
                                                 $staffNames[] = $staff['nama_staff'];
                                                 $i++;
                                             }
-
                                             // Menampilkan nama-nama staff yang terlibat dalam mediasi
                                             echo implode(", ", $staffNames);
                                             ?>
@@ -96,49 +85,38 @@
                                         <th>Majelis Komisioner</th>
                                         <td><?php echo $d['majelis_komisioner']; ?></td>
                                     </tr>
-                                    
                                 </table>
-
                             </div>
-
                             <div class="col-lg-8">
                                 <form method="post" action="sidang_status.php">
-                                <div class="form-group">
-                                    <input type="hidden" name="id" value="<?php echo $d['sidang_id']; ?>">
-                                    <input type="hidden" name="ke" value="<?php echo $d['sidang_ke']; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label>Catatan Hasil Sidang</label>
-                                    <textarea class="form-control" name="catatan" required="required"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Sidang Selesai</label>
-                                    <input type="checkbox" name="keterangan" value="Selesai">
-                                </div>
-                                <div class="form-group">
-                                    <label>Lanjut Sidang Selanjutnya</label>
-                                    <input type="checkbox" name="keterangan" value="Lanjut Sidang">
-                                </div>
-                                <div class="form-group">
-                                    <label></label>
-                                    <input type="submit" class="btn btn-primary" value="Simpan">
-                                </div>
+                                    <div class="form-group">
+                                        <input type="hidden" name="id" value="<?php echo $d['sidang_id']; ?>">
+                                        <input type="hidden" name="ke" value="<?php echo $d['sidang_ke']; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Catatan Hasil Sidang</label>
+                                        <textarea class="form-control" name="catatan" required="required"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sidang Selesai</label>
+                                        <input type="checkbox" name="keterangan" value="Selesai">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Lanjut Sidang Selanjutnya</label>
+                                        <input type="checkbox" name="keterangan" value="Lanjut Sidang">
+                                    </div>
+                                    <div class="form-group">
+                                        <label></label>
+                                        <input type="submit" class="btn btn-primary" value="Simpan">
+                                    </div>
                                 </form>
-
                             </div>
                         </div>
-
-                        <?php 
+                    <?php
                     }
                     ?>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
-
-
-

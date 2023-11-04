@@ -25,80 +25,64 @@
 </div>
 
 <div class="container-fluid">
-
-
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
             <div class="panel panel">
-
                 <div class="panel-heading">
                     <h3 class="panel-title">Upload Jadwal Mediasi</h3>
                 </div>
                 <div class="panel-body">
-
-                    <div class="pull-right">            
+                    <div class="pull-right">
                         <a href="mediasi.php" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
                     </div>
-
                     <br>
                     <br>
-
                     <form method="post" action="mediasi_aksi.php" enctype="multipart/form-data">
-
                         <div class="form-group">
                             <label>Sengketa</label>
-                            <select class="form-control" name="sengketa" required="required">
+                            <select class="form-control" name="sengketa" required>
                                 <option value="">Pilih pemohon</option>
-                                <?php 
-                                $kategori = mysqli_query($koneksi,"SELECT * FROM sengketa where proses='Diproses'");
-                                while($k = mysqli_fetch_array($kategori)){
-                                    ?>
+                                <?php
+                                $kategori = mysqli_query($koneksi, "SELECT * FROM sengketa where proses='Diproses'");
+                                while ($k = mysqli_fetch_array($kategori)) {
+                                ?>
                                     <option value="<?php echo $k['sengketa_id']; ?>"><?php echo $k['nama_pemohon']; ?></option>
-                                    <?php 
+                                <?php
                                 }
                                 ?>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label>Tanggal Mediasi</label>
                             <input type="date" class="form-control" name="tgl" required="required">
                         </div>
-
                         <div class="form-group">
                             <label>Jam Mediasi</label>
                             <input type="time" class="form-control" name="jam" required="required">
                         </div>
-
                         <div class="form-group">
                             <label>Nama Petugas</label>
-                            <?php 
+                            <?php
                             $kategori = mysqli_query($koneksi, "SELECT * FROM staff");
                             while ($k = mysqli_fetch_array($kategori)) {
-                                ?>
+                            ?>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="staff[]" value="<?php echo $k['id_staff']; ?>" id="staff<?php echo $k['id_staff']; ?>">
                                     <label class="form-check-label" for="staff<?php echo $k['id_staff']; ?>"><?php echo $k['nama_staff']; ?></label>
                                 </div>
-                                <?php 
+                            <?php
                             }
                             ?>
                         </div>
-
-                        
                         <div class="form-group">
                             <label></label>
                             <input type="submit" class="btn btn-primary" value="Upload">
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
 
 

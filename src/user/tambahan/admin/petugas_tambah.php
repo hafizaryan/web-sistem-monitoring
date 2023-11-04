@@ -25,61 +25,46 @@
 </div>
 
 <div class="container-fluid">
-
-
     <div class="row">
         <div class="col-lg-6">
             <div class="panel panel">
-
                 <div class="panel-heading">
                     <h3 class="panel-title">Tambah Pimpinan</h3>
                 </div>
                 <div class="panel-body">
-
-                    <div class="pull-right">            
+                    <div class="pull-right">
                         <a href="petugas.php" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Kembali</a>
                     </div>
-
                     <br>
                     <br>
-
                     <form method="post" action="petugas_aksi.php" enctype="multipart/form-data">
-
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" class="form-control" name="nama" required="required">
+                            <input type="text" class="form-control" name="nama" required="required" maxlength="40" autofocus>
                         </div>
-
                         <div class="form-group">
                             <label>Username</label>
-                            <input type="text" class="form-control" name="username" required="required">
+                            <input type="text" class="form-control" name="username" required="required" maxlength="40" autofocus>
                         </div>
-
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" name="password" required="required">
+                            <input type="password" class="form-control" name="password" required="required" maxlength="40" autofocus>
                         </div>
-
                         <div class="form-group">
                             <label>Foto</label>
                             <input type="file" name="foto">
                         </div>
-
                         <div class="form-group">
                             <label></label>
                             <input type="submit" class="btn btn-primary" value="Simpan">
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
 
-
 </div>
 <br><br><br>
 <div>
-<?php include 'footer.php'; ?></div>
-
+    <?php include 'footer.php'; ?></div>

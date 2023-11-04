@@ -19,8 +19,6 @@ $diproses = mysqli_query($koneksi, "select * from sengketa WHERE proses = 'Dipro
 $selesai = mysqli_query($koneksi, "select * from sengketa WHERE proses = 'Selesai'");
 
 ?>
-
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-3 shadow">
   <div class="container" data-aos="fade-down">
     <a class="navbar-brand" href="#">
@@ -28,8 +26,7 @@ $selesai = mysqli_query($koneksi, "select * from sengketa WHERE proses = 'Selesa
     </a>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
-        <a href="login.php" class="btn btn-light mr-3"><b>Login</b></a>
-       
+        <a href="login.php" class="btn btn-light mr-3"><b>Login</b></a>    
       </ul>
     </div>
   </div>

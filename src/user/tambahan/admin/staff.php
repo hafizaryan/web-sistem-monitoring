@@ -18,6 +18,21 @@
                             </ul>
                         </div>
                     </div>
+                    <br>
+                    <?php
+                    if (isset($_SESSION['success_message'])) {
+                        echo '<div class="alert alert-success" role="alert" id="successMessage">' . $_SESSION['success_message'] . '</div>';
+                        unset($_SESSION['success_message']); // Hapus pesan setelah ditampilkan
+                    }
+                    ?>
+                    <script>
+                        setTimeout(function() {
+                            var successMessage = document.getElementById('successMessage');
+                            if (successMessage) {
+                                successMessage.style.display = 'none';
+                            }
+                        }, 3000); // Menghilangkan pesan setelah 3 detik (3000 ms)
+                    </script>
                 </div>
             </div>
         </div>
@@ -26,17 +41,13 @@
 
 <div class="container-fluid">
     <div class="panel panel">
-
         <div class="panel-heading">
             <h3 class="panel-title">Data Petugas</h3>
         </div>
         <div class="panel-body">
-
-
             <div class="pull-right">
                 <a href="staff_tambah.php" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Petugas</a>
             </div>
-
             <br>
             <br>
             <br>
@@ -51,41 +62,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
+                    <?php
                     include '../koneksi.php';
                     $no = 1;
-                    $staff = mysqli_query($koneksi,"SELECT * FROM staff");
-                    while($p = mysqli_fetch_array($staff)){
-                        ?>
+                    $staff = mysqli_query($koneksi, "SELECT * FROM staff");
+                    while ($p = mysqli_fetch_array($staff)) {
+                    ?>
                         <tr>
                             <td><?php echo $no++; ?></td>
                             <td><?php echo $p['nama_staff'] ?></td>
                             <td><?php echo $p['jabatan'] ?></td>
                             <td><?php echo $p['no_hp_staff'] ?></td>
                             <td class="text-center">
-                                
-                            
-                                    <div class="btn-group">
-                                        <a href="staff_edit.php?id=<?php echo $p['id_staff']; ?>" class="btn btn-default"><i class="fa fa-wrench"></i></a>
-                                        <a href="staff_hapus.php?id=<?php echo $p['id_staff']; ?>" class="btn btn-default"><i class="fa fa-trash"></i></a>
-                                    </div>
-                                    <?php
-                                
+                                <div class="btn-group">
+                                    <a href="staff_edit.php?id=<?php echo $p['id_staff']; ?>" class="btn btn-default"><i class="fa fa-wrench"></i></a>
+                                    <a href="staff_hapus.php?id=<?php echo $p['id_staff']; ?>" class="btn btn-default" onclick="return confirm('Apakah Anda yakin ingin menghapus?')"><i class="fa fa-trash"></i></a>
+                                </div>
+                                <?php
                                 ?>
                             </td>
                         </tr>
-                        <?php 
+                    <?php
                     }
                     ?>
                 </tbody>
             </table>
-
-
         </div>
-
     </div>
 </div>
 <br><br><br><br>
 <div>
-<?php include 'footer.php'; ?></div>
-
+    <?php include 'footer.php'; ?></div>

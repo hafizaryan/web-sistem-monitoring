@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Admin - Sistem Informasi Monitoring</title>
+    <link rel="icon" href="../../../../assets/img/ki.png">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -28,37 +28,34 @@
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="stylesheet" href="../assets/css/responsive.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" type="text/css" href="../assets/js/DataTables/datatables.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="../assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
-    <?php 
+    <?php
     include '../koneksi.php';
     session_start();
-    if($_SESSION['status'] != "admin_login"){
+    if ($_SESSION['status'] != "admin_login") {
         header("location:../login.php?alert=belum_login");
     }
     ?>
     <!-- Letakkan ini di bagian head atau sebelum penutup tag </body> -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-$(document).ready(function() {
-    // Tangkap tombol sampah dengan class btn-delete saat diklik
-    $(".btn-delete").click(function() {
-        // Dapatkan ID data yang akan dihapus dari atribut data-id tombol
-        var id = $(this).data("id");
-
-        // Konfirmasi penghapusan, Anda bisa menggunakan sweetalert atau fungsi confirm bawaan JavaScript
-        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-            
-        }
-    });
-});
-</script>
-
+    <script>
+        $(document).ready(function() {
+            // Tangkap tombol sampah dengan class btn-delete saat diklik
+            $(".btn-delete").click(function() {
+                // Dapatkan ID data yang akan dihapus dari atribut data-id tombol
+                var id = $(this).data("id");
+                // Konfirmasi penghapusan, Anda bisa menggunakan sweetalert atau fungsi confirm bawaan JavaScript
+                if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {}
+            });
+        });
+    </script>
 </head>
+
 <body>
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
@@ -140,7 +137,7 @@ $(document).ready(function() {
                                                 <i class="educate-icon educate-nav"></i>
                                             </button>
                                         </div>
-                                       
+
                                     </div>
                                     <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
@@ -154,88 +151,87 @@ $(document).ready(function() {
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
 
 
-                                            <li class="nav-item">
-                                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                    <?php 
-                                                    $id_admin = $_SESSION['id'];
-                                                    $profil = mysqli_query($koneksi,"select * from admin where admin_id='$id_admin'");
-                                                    $profil = mysqli_fetch_assoc($profil);
-                                                    if($profil['admin_foto'] == ""){ 
-                                                      ?>
-                                                      <img src="../gambar/sistem/user.png" style="width: 20px;height: 20px">
-                                                  <?php }else{ ?>
-                                                    <img src="../gambar/admin/<?php echo $profil['admin_foto'] ?>" style="width: 20px;height: 20px">
-                                                <?php } ?>
-                                                <span class="admin-name"><?php echo $_SESSION['nama']; ?> [ <b>Administrator</b> ]</span>
-                                                <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                                            </a>
-                                            <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                <li><a href="profil.php"><span class="edu-icon edu-home-admin author-log-ic"></span>Profil Saya</a></li>
-                                                <li><a href="gantipassword.php"><span class="edu-icon edu-user-rounded author-log-ic"></span>Ganti Password</a></li>
-                                                <li><a href="backup_database.php"><span class="edu-icon edu-home-admin author-log-ic"></span>Backup Database</a></li>
-                                                <li><a href="logout.php"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a></li>
+                                                <li class="nav-item">
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                                        <?php
+                                                        $id_admin = $_SESSION['id'];
+                                                        $profil = mysqli_query($koneksi, "select * from admin where admin_id='$id_admin'");
+                                                        $profil = mysqli_fetch_assoc($profil);
+                                                        if ($profil['admin_foto'] == "") {
+                                                        ?>
+                                                            <img src="../gambar/sistem/user.png" style="width: 20px;height: 20px">
+                                                        <?php } else { ?>
+                                                            <img src="../gambar/admin/<?php echo $profil['admin_foto'] ?>" style="width: 20px;height: 20px">
+                                                        <?php } ?>
+                                                        <span class="admin-name"><?php echo $_SESSION['nama']; ?> [ <b>Administrator</b> ]</span>
+                                                        <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                                                    </a>
+                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                        <li><a href="profil.php"><span class="edu-icon edu-home-admin author-log-ic"></span>Profil Saya</a></li>
+                                                        <li><a href="gantipassword.php"><span class="edu-icon edu-user-rounded author-log-ic"></span>Ganti Password</a></li>
+                                                        <li><a href="backup_database.php"><span class="edu-icon edu-home-admin author-log-ic"></span>Pengaturan Database</a></li>
+                                                        <li><a href="logout.php" onclick="return confirm('Apakah anda yakin ingin Logout?');"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a></li>
+                                                    </ul>
+                                                </li>
                                             </ul>
-                                        </li>
-                                    </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Mobile Menu start -->
-    <div class="mobile-menu-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="mobile-menu">
-                        <nav id="dropdown">
-                            <ul class="mobile-menu-nav">
-                                <li class="active">
-                                    <a href="index.php">
-                                        <span class="educate-icon educate-home icon-wrap"></span>
-                                        <span class="mini-click-non">Dashboard</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="dokumen.php" aria-expanded="false"><span class="educate-icon educate-course icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data Dokumen</span></a>
-                                </li>
+            <!-- Mobile Menu start -->
+            <div class="mobile-menu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="mobile-menu">
+                                <nav id="dropdown">
+                                    <ul class="mobile-menu-nav">
+                                        <li class="active">
+                                            <a href="index.php">
+                                                <span class="educate-icon educate-home icon-wrap"></span>
+                                                <span class="mini-click-non">Dashboard</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="dokumen.php" aria-expanded="false"><span class="educate-icon educate-course icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data Dokumen</span></a>
+                                        </li>
 
-                                <li>
-                                    <a href="petugas.php" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data Pimpinan</span></a>
-                                </li>
+                                        <li>
+                                            <a href="petugas.php" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data Pimpinan</span></a>
+                                        </li>
 
-                                <li>
-                                    <a href="permohonan.php" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data Permohonan</span></a>
-                                </li>
+                                        <li>
+                                            <a href="permohonan.php" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data Permohonan</span></a>
+                                        </li>
 
-                                <li>
-                                    <a href="staff.php" aria-expanded="false"><span class="educate-icon educate-data-table icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data Petugas</span></a>
-                                </li>
+                                        <li>
+                                            <a href="staff.php" aria-expanded="false"><span class="educate-icon educate-data-table icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Data Petugas</span></a>
+                                        </li>
 
-                                <li>
-                                    <a href="mediasi.php" aria-expanded="false"><span class="educate-icon educate-data-table icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Jadwal Mediasi</span></a>
-                                </li>
+                                        <li>
+                                            <a href="mediasi.php" aria-expanded="false"><span class="educate-icon educate-data-table icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Jadwal Mediasi</span></a>
+                                        </li>
 
-                                <li>
-                                    <a href="sidang.php" aria-expanded="false"><span class="educate-icon educate-danger icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Jadwal Sidang</span></a>
-                                </li>
+                                        <li>
+                                            <a href="sidang.php" aria-expanded="false"><span class="educate-icon educate-danger icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Jadwal Sidang</span></a>
+                                        </li>
 
-                                <li>
-                                    <a href="laporan.php" aria-expanded="false"><span class="educate-icon educate-danger icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Laporan Hasil</span></a>
-                                </li>
+                                        <li>
+                                            <a href="laporan.php" aria-expanded="false"><span class="educate-icon educate-danger icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Laporan Hasil</span></a>
+                                        </li>
 
-                                <li>
-                                    <a href="logout.php" aria-expanded="false"><span class="educate-icon educate-pages icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Logout</span></a>
-                                </li>
-                            </ul>
-                        </nav>
+                                        <li>
+                                            <a href="logout.php" aria-expanded="false"><span class="educate-icon educate-pages icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Logout</span></a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-

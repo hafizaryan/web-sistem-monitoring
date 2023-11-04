@@ -9,7 +9,6 @@ require '../layouts/navUser.php';
 
 ?>
 
-
 <div class="row py-5">
   <div class="col-6 py-5 mt-3">
     <div class="desc ml-5">

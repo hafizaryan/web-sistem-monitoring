@@ -13,5 +13,7 @@ if ($data) {
 } else {
     $_SESSION['success_message'] = "Gagal menghapus data."; // Pesan kesalahan jika penghapusan gagal
 }
+
+
 header("location:petugas.php");
 ?>

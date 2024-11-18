@@ -1,5 +1,5 @@
 # Daisy - Dermatological AI System for Your Skin
-<img src="assets/img">
+<img src="assets/img/ki.png">
 
 ## C242-PS182 [Product-Based Capstone - Bangkit 2024 Batch 2]
 
